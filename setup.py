@@ -16,6 +16,7 @@ with open('HISTORY.rst') as history_file:
 
 requirements = [
     'click',
+    'anyjson',
     'tailer', # for python3 you need to take a version from the github: https://github.com/six8/pytailer
 ]
 
