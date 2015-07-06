@@ -20,6 +20,7 @@ import tailer
 import anyjson
 import re
 import click
+import sys
 
 from click import echo
 from collections import defaultdict
@@ -43,7 +44,7 @@ def print_item(item):
               help='Show only items with this text in any field.')
 @click.option('--name',
               help='Show only items with logger name which matches to this regexp.')
-@click.argument('filename')
+@click.argument('filename', required=False)
 def main_func(filename, cross_finger, message, grep, name):
     buffer = defaultdict(list)
 
@@ -60,11 +61,17 @@ def main_func(filename, cross_finger, message, grep, name):
         print_item(item)
 
 
-    for line in tailer.follow(open(filename)):
+    if filename:
+        stream = open(filename)
+        stream = tailer.follow(stream)
+    else:
+        stream = sys.stdin
+
+    for line in stream:
         item = anyjson.deserialize(line)
-        fields = item['@fields']
 
         if cross_finger:
+            fields = item['@fields']
             if 'uuid' in fields:
                 uuid = fields['uuid']
                 buffer[uuid].append(item)
