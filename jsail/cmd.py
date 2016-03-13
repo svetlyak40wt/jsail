@@ -65,7 +65,13 @@ def main_func(filename, cross_finger, message, grep, name):
         stream = open(filename)
         stream = tailer.follow(stream)
     else:
-        stream = sys.stdin
+        def unbuffered_lines(stream):
+            while True:
+                try:
+                    yield stream.readline()
+                except:
+                    pass
+        stream = unbuffered_lines(sys.stdin)
 
     for line in stream:
         item = anyjson.deserialize(line)
