@@ -70,7 +70,7 @@ def main_func(filename, cross_finger, message, grep, name):
                 try:
                     yield stream.readline()
                 except:
-                    pass
+                    return
         stream = unbuffered_lines(sys.stdin)
 
     for line in stream:
