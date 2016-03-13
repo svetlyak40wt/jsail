@@ -1,7 +1,15 @@
 .. :changelog:
 
 History
--------
+=======
+
+0.2.1 (2016-03-13)
+------------------
+
+* Fixed issue with STDIN bufering. Previously,
+  input given from STDIN was buffered and sometimes
+  ``jsail`` didn't show content until buffer fills up.
+  Now this behaviour is fixed.
 
 0.2.0 (2015-07-06)
 ------------------
