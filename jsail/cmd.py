@@ -27,11 +27,40 @@ from collections import defaultdict
 
 
 def print_item(item):
-    echo(u'{ts} {msg}'.format(
-        ts = item['@timestamp'].replace('T', ' '),
-        msg = item['@message']))
+    fields = item['@fields']
 
-    for kv in item['@fields'].items():
+    if '@timestamp' in item:
+        ts = item['@timestamp'].replace('T', ' ')
+    if 'timestamp' in item:
+        ts = item['timestamp'].replace('T', ' ')
+    if 'time' in item:
+        ts = item['time'].replace('T', ' ')
+    elif 'timestamp' in fields:
+        ts = fields['timestamp'].replace('T', ' ')
+    elif 'time' in fields:
+        ts = fields['time'].replace('T', ' ')
+    else:
+        ts = None
+
+    if '@message' in item:
+        msg = item['@message']
+    elif 'message' in item:
+        msg = item['message']
+    elif 'msg' in item:
+        msg = item['msg']
+    elif 'message' in fields:
+        msg = fields['message']
+    elif 'msg' in fields:
+        msg = fields['msg']
+    else:
+        msg = 'No message'
+
+    if ts:
+        echo(u'{ts} {msg}'.format(ts=ts, msg=msg))
+    else:
+        echo(u'{msg}'.format(ts=ts, msg=msg))
+
+    for kv in fields.items():
         echo((u' ' * 20 + u'{0} = {1}').format(*kv))
 
 

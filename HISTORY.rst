@@ -3,6 +3,14 @@
 History
 =======
 
+0.3.0 (2016-10-03)
+------------------
+
+* Now jsail recognizes as timestamp keys ``timestamp``,
+  ``time``, ``@fields.timestamp``, ``@fields.time``.
+  And similarly, for message these keys are checked:
+  ``message``, ``msg``, ``@fields.message``, ``@fields.msg``.
+
 0.2.1 (2016-03-13)
 ------------------
 
