@@ -10,6 +10,8 @@ History
   ``time``, ``@fields.timestamp``, ``@fields.time``.
   And similarly, for message these keys are checked:
   ``message``, ``msg``, ``@fields.message``, ``@fields.msg``.
+* Now jsail quietly skips lines which can't be parsed
+  as single JSON document.
 
 0.2.1 (2016-03-13)
 ------------------

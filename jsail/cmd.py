@@ -103,7 +103,10 @@ def main_func(filename, cross_finger, message, grep, name):
         stream = unbuffered_lines(sys.stdin)
 
     for line in stream:
-        item = anyjson.deserialize(line)
+        try:
+            item = anyjson.deserialize(line)
+        except:
+            continue
 
         if cross_finger:
             fields = item['@fields']
