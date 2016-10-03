@@ -26,7 +26,7 @@ test_requirements = [
 
 setup(
     name='jsail',
-    version='0.2.1',
+    version='0.3.0',
     description="A tail for JSON logs.",
     long_description=readme + '\n\n' + history,
     author="Alexander Artemenko",
