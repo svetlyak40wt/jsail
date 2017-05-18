@@ -96,10 +96,12 @@ def main_func(filename, cross_finger, message, grep, name):
     else:
         def unbuffered_lines(stream):
             while True:
-                try:
-                    yield stream.readline()
-                except:
+                line = stream.readline()
+                if line == '':
                     return
+
+                yield line
+
         stream = unbuffered_lines(sys.stdin)
 
     for line in stream:

@@ -3,6 +3,12 @@
 History
 =======
 
+0.4.0 (2017-05-18)
+------------------
+
+* Unbuffered stdin usage was fixed and now program
+  exists correctly if it encounter EOF.
+
 0.3.0 (2016-10-03)
 ------------------
 
