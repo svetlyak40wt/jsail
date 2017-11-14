@@ -3,6 +3,12 @@
 History
 =======
 
+0.5.0 (2017-11-14)
+------------------
+
+* Now jsail searches fields dict not only in key ``@fields``, but also
+  in ``fields``.
+
 0.4.0 (2017-05-18)
 ------------------
 

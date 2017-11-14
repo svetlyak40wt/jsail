@@ -27,7 +27,7 @@ from collections import defaultdict
 
 
 def print_item(item):
-    fields = item['@fields']
+    fields = item.get('@fields', item.get('fields', {}))
 
     if '@timestamp' in item:
         ts = item['@timestamp'].replace('T', ' ')
