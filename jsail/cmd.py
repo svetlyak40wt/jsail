@@ -31,9 +31,9 @@ def print_item(item):
 
     if '@timestamp' in item:
         ts = item['@timestamp'].replace('T', ' ')
-    if 'timestamp' in item:
+    elif 'timestamp' in item:
         ts = item['timestamp'].replace('T', ' ')
-    if 'time' in item:
+    elif 'time' in item:
         ts = item['time'].replace('T', ' ')
     elif 'timestamp' in fields:
         ts = fields['timestamp'].replace('T', ' ')

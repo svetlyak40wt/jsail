@@ -8,6 +8,17 @@ History
 
 * Now jsail searches fields dict not only in key ``@fields``, but also
   in ``fields``.
+* Fixed precendence of fields searched for item's timestamp. Previously,
+  item found in ``@timestamp`` can be overwritten by value from
+  ``time``. Now these fields are searched in this order and first found
+  value is used:
+
+  - ``@timestamp``
+  - ``timestamp``
+  - ``time``
+  - ``(@fields | fields).timestamp``
+  - ``(@fields | fields).time``
+
 
 0.4.0 (2017-05-18)
 ------------------
