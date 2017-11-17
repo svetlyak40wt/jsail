@@ -3,6 +3,12 @@
 History
 =======
 
+0.5.1 (2017-11-17)
+------------------
+
+* Argument ``--fields`` was added. You can use it to specify which fields
+  should be printed to stdout. By default, all fields are printed.
+
 0.5.0 (2017-11-14)
 ------------------
 

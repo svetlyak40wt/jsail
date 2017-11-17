@@ -26,7 +26,7 @@ from click import echo
 from collections import defaultdict
 
 
-def print_item(item):
+def print_item(item, only_fields):
     fields = item.get('@fields', item.get('fields', {}))
 
     if '@timestamp' in item:
@@ -60,8 +60,9 @@ def print_item(item):
     else:
         echo(u'{msg}'.format(ts=ts, msg=msg))
 
-    for kv in fields.items():
-        echo((u' ' * 20 + u'{0} = {1}').format(*kv))
+    for key, value in sorted(fields.items()):
+        if not only_fields or key in only_fields:
+            echo((u' ' * 20 + u'{0} = {1}').format(key, value))
 
 
 @click.command()
@@ -69,13 +70,18 @@ def print_item(item):
               help='Output only if there was ERROR.')
 @click.option('--message',
               help='Show only items with this text in message.')
+@click.option('--fields',
+              help='Comma-separated list of fields to output. By default, all fields are printed.',
+              default='')
 @click.option('--grep',
               help='Show only items with this text in any field.')
 @click.option('--name',
               help='Show only items with logger name which matches to this regexp.')
 @click.argument('filename', required=False)
-def main_func(filename, cross_finger, message, grep, name):
+def main_func(filename, cross_finger, message, fields, grep, name):
     buffer = defaultdict(list)
+
+    fields = set(filter(None, fields.split(',')))
 
     def print_if_needed(item, line):
         if message:
@@ -87,7 +93,7 @@ def main_func(filename, cross_finger, message, grep, name):
         if name:
             if re.search(name, item['@fields'].get('name', ''), re.I) is None:
                 return
-        print_item(item)
+        print_item(item, fields)
 
 
     if filename:
