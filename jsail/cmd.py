@@ -37,7 +37,7 @@ def print_item(item, only_fields):
         ts = item['time'].replace('T', ' ')
     elif 'timestamp' in fields:
         ts = fields['timestamp'].replace('T', ' ')
-    elif 'time' in fields:
+    elif 'time' in fields and isinstance(fields['time'], basestring):
         ts = fields['time'].replace('T', ' ')
     else:
         ts = None

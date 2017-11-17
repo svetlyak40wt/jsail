@@ -8,6 +8,8 @@ History
 
 * Argument ``--fields`` was added. You can use it to specify which fields
   should be printed to stdout. By default, all fields are printed.
+* Fixed error with parsing entries where fields contains ``time`` key
+  with non string value.
 
 0.5.0 (2017-11-14)
 ------------------
